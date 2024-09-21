@@ -1,0 +1,42 @@
+{
+  "Name": "Syracuse", 
+  "Type": "Cruiser", 
+  "Thrust": 2,
+  "Shields": {
+    "Forward": 4,
+    "LeftForward": 3,
+    "LeftAft": 3,
+    "RightForward": 3,
+    "RightAft": 3,
+    "Aft": 4
+  },
+  "Armor": {
+    "Forward": 100,
+    "LeftForward": 100,
+    "LeftAft": 100,
+    "RightForward": 100,
+    "RightAft": 100,
+    "Aft": 100
+  },
+  "Armaments": {
+    "Spinal": { "Type": "B", "Location": "F" },
+    "Bays": [
+      { "Type": "100 37.5/30", "Location": "L" },
+      { "Type": "100 37.5/30", "Location": "R" },
+      { "Type": "50 22.5/10", "Location": "L" },
+      { "Type": "50 22.5/10", "Location": "R" }
+    ],
+    "Missile": {
+      "Type": "G",
+      "Used": 0
+    },
+    "Fighters": {
+      "Qty": 72,
+      "Tons": 300
+    },
+    "Turrets": {
+      "Left": null,
+      "Right": null 
+    }
+  }
+}

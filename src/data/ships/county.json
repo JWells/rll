@@ -1,0 +1,39 @@
+{
+  "Name": "County", 
+  "Type": "Frigate", 
+  "Thrust": 4,
+  "Shields": {
+    "Forward": 3,
+    "LeftForward": 3,
+    "LeftAft": 2,
+    "RightForward": 3,
+    "RightAft": 2,
+    "Aft": 3
+  },
+  "Armor": {},
+  "Armaments": {
+    "Spinal": { "Type": "", "Location": "", "FireModifier": 0 },
+    "Bays": [
+      { "Type": "50 37.5/5", "Location": "F", "FireModifier": 0 },
+      { "Type": "50 37.5/5", "Location": "L", "FireModifier": 0 },
+      { "Type": "50 37.5/5", "Location": "R", "FireModifier": 0 },
+      { "Type": "25 7.5/30", "Location": "L", "FireModifier": 0 },
+      { "Type": "25 7.5/30", "Location": "R", "FireModifier": 0 },
+      { "Type": "10 7.5/30", "Location": "F", "FireModifier": 0 },
+      { "Type": "10 7.5/30", "Location": "A", "FireModifier": 0 },
+      { "Type": "10 7.5/30", "Location": "A", "FireModifier": 0 }
+    ],
+    "Missile": {
+      "Type": "",
+      "Used": 0
+    },
+    "Fighters": {
+      "Qty": 0,
+      "Tons": 0
+    },
+    "Turrets": {
+      "Left": 0,
+      "Right": 0 
+    }
+  }
+}

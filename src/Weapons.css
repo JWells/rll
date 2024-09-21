@@ -1,0 +1,61 @@
+.weapons_table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.weapons_table thead th {
+  text-align: center;
+}
+
+.weapons_table tbody th {
+  white-space: nowrap;
+  width: 10%;
+}
+
+.c1 {
+  width: 22%;
+}
+
+.c5 {
+  width: 9%;
+}
+
+table tbody th,td {
+  border: 1px solid black;
+}
+
+.weapons_table th {
+  text-align: left;
+  font-size: 70%;
+}
+
+.weapons_table td {
+  font-size: 80%;
+  text-align: center;
+}
+
+.missiles {
+  margin-top: 5px;
+}
+
+.missile_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.missile_shots {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 30% repeat(auto-fit, 20px); 
+  grid-column-gap: 1rem;
+}
+
+.missile_shot {
+  outline: 1px solid black;
+}
+
+.missile_fired {
+  background-color: grey;
+}

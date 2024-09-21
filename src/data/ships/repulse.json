@@ -1,0 +1,41 @@
+{
+  "Name": "Repulse", 
+  "Type": "Battleship", 
+  "Thrust": 2,
+  "Shields": {
+    "Forward": 4,
+    "LeftForward": 4,
+    "LeftAft": 4,
+    "RightForward": 4,
+    "RightAft": 4,
+    "Aft": 4
+  },
+  "Armor": {},
+  "Armaments": {
+    "Spinal": { "Type": "D", "Location": "F", "FireModifier": 0 },
+    "Bays": [
+      { "Type": "100 37.5/5", "Location": "L", "FireModifier": 0 },
+      { "Type": "100 37.5/5", "Location": "L", "FireModifier": 0 },
+      { "Type": "100 37.5/5", "Location": "R", "FireModifier": 0 },
+      { "Type": "100 37.5/5", "Location": "R", "FireModifier": 0 },
+      { "Type": "50 37.5/30", "Location": "F", "FireModifier": 0 },
+      { "Type": "50 37.5/30", "Location": "L", "FireModifier": 0 },
+      { "Type": "50 37.5/30", "Location": "R", "FireModifier": 0 },
+      { "Type": "50 37.5/30", "Location": "A", "FireModifier": 0 },
+      { "Type": "25 22.5/15", "Location": "F", "FireModifier": 0 },
+      { "Type": "25 22.5/15", "Location": "A", "FireModifier": 0 }
+    ],
+    "Missile": {
+      "Type": "E",
+      "Used": 0
+    },
+    "Fighters": {
+      "Qty": 144,
+      "Tons":300 
+    },
+    "Turrets": {
+      "Left": 0,
+      "Right": 0 
+    }
+  }
+}

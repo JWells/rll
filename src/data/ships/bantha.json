@@ -1,0 +1,35 @@
+{
+  "Name": "Bantha", 
+  "Type": "Frigate", 
+  "Thrust": 3,
+  "Shields": {
+    "Forward": 3,
+    "LeftForward": 3,
+    "LeftAft": 2,
+    "RightForward": 3,
+    "RightAft": 2,
+    "Aft": 3
+  },
+  "Armor": {},
+  "Armaments": {
+    "Spinal": { "Type": "B", "Location": "F", "FireModifier": 0 },
+    "Bays": [
+      { "Type": "25 37.5/20", "Location": "F", "FireModifier": 0 },
+      { "Type": "25 37.5/20", "Location": "L", "FireModifier": 0 },
+      { "Type": "25 37.5/20", "Location": "R", "FireModifier": 0 },
+      { "Type": "25 37.5/20", "Location": "A", "FireModifier": 0 },
+      { "Type": "50 15/30", "Location": "L", "FireModifier": 0 },
+      { "Type": "50 15/30", "Location": "L", "FireModifier": 0 },
+      { "Type": "50 15/30", "Location": "R", "FireModifier": 0 },
+      { "Type": "50 15/30", "Location": "R", "FireModifier": 0 }
+    ],
+    "Missile": {
+      "Type": "",
+      "Used": 0
+    },
+    "Fighters": {
+      "Qty": 48,
+      "Tons": 300
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "Name": "Xerxes", 
+  "Type": "Frigate", 
+  "Thrust": 4,
+  "Shields": {
+    "Forward": 3,
+    "LeftForward": 3,
+    "LeftAft": 2,
+    "RightForward": 3,
+    "RightAft": 2,
+    "Aft": 3
+  },
+  "Armor": {},
+  "Armaments": {
+    "Spinal": { "Type": "", "Location": "", "FireModifier": 0 },
+    "Bays": [
+      { "Type": "50 30/5", "Location": "F", "FireModifier": 0 },
+      { "Type": "50 30/5", "Location": "L", "FireModifier": 0 },
+      { "Type": "50 30/5", "Location": "L", "FireModifier": 0 },
+      { "Type": "50 30/5", "Location": "R", "FireModifier": 0 },
+      { "Type": "50 30/5", "Location": "R", "FireModifier": 0 },
+      { "Type": "10 30/5", "Location": "A", "FireModifier": 0 }
+    ],
+    "Missile": {
+      "Type": "",
+      "Used": 0
+    },
+    "Fighters": {
+      "Qty": 360,
+      "Tons": 300
+    },
+    "Turrets": {
+      "Left": 0,
+      "Right": 0 
+    }
+  }
+}

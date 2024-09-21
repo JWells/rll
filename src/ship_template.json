@@ -1,0 +1,32 @@
+{
+  "Name": "", 
+  "Type": "", 
+  "Thrust": 0,
+  "Shields": {
+    "Forward": 0,
+    "LeftForward": 0,
+    "LeftAft": 0,
+    "RightForward": 0,
+    "RightAft": 0,
+    "Aft": 0
+  },
+  "Armor": {},
+  "Armaments": {
+    "Spinal": { "Type": "", "Location": "", "FireModifier": 0 },
+    "Bays": [
+      { "Type": "", "Location": "", "FireModifier": 0 }
+    ],
+    "Missile": {
+      "Type": "",
+      "Used": 0
+    },
+    "Fighters": {
+      "Qty": 0,
+      "Tons": 0
+    },
+    "Turrets": {
+      "Left": 0,
+      "Right": 0 
+    }
+  }
+}
