@@ -5,5 +5,6 @@ export default defineConfig({
   build: {
     outDir: 'docs'
   },
+  base: 'https://jwells.github.io/rll',
   plugins: [react()],
 })
