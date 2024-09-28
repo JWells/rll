@@ -1,0 +1,431 @@
+{
+  "Ships": [
+    {
+      "Name": "Xerxes", 
+      "Faction": "Terran Overlord Government",
+      "Type": "Frigate", 
+      "Thrust": 4,
+      "Shields": {
+        "Forward": 3,
+        "LeftForward": 3,
+        "LeftAft": 2,
+        "RightForward": 3,
+        "RightAft": 2,
+        "Aft": 3
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "", "Location": "", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "50 30/5", "Location": "F", "FireModifier": 0 },
+          { "Type": "50 30/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 30/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 30/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 30/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "10 30/5", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Syracuse", 
+      "Faction": "Terran Overlord Government",
+      "Type": "Cruiser", 
+      "Thrust": 2,
+      "Shields": {
+        "Forward": 4,
+        "LeftForward": 3,
+        "LeftAft": 3,
+        "RightForward": 3,
+        "RightAft": 3,
+        "Aft": 4
+      },
+      "Armor": {
+        "Forward": 100,
+        "LeftForward": 100,
+        "LeftAft": 100,
+        "RightForward": 100,
+        "RightAft": 100,
+        "Aft": 100
+      },
+      "Armaments": {
+        "Spinal": { "Type": "B", "Location": "F" },
+        "Bays": [
+          { "Type": "100 37.5/30", "Location": "L" },
+          { "Type": "100 37.5/30", "Location": "R" },
+          { "Type": "50 22.5/10", "Location": "L" },
+          { "Type": "50 22.5/10", "Location": "R" }
+        ],
+        "Missile": {
+          "Type": "G",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": null,
+          "Right": null 
+        }
+      }
+    },
+    {
+      "Name": "Serpens", 
+      "Type": "Destroyer", 
+      "Faction": "Terran Overlord Government",
+      "Thrust": 4,
+      "Shields": {
+        "Forward": 2,
+        "LeftForward": 2,
+        "LeftAft": 2,
+        "RightForward": 2,
+        "RightAft": 2,
+        "Aft": 2
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "A", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "50 15/20", "Location": "F", "FireModifier": 0 },
+          { "Type": "50 15/20", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 15/20", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 15/20", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 15/20", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 15/20", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "G",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Fulgur", 
+      "Faction": "Terran Overlord Government",
+      "Type": "Destroyer", 
+      "Thrust": 4,
+      "Shields": {
+        "Forward": 2,
+        "LeftForward": 2,
+        "LeftAft": 2,
+        "RightForward": 2,
+        "RightAft": 2,
+        "Aft": 2
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "A", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "50 30/20", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 30/20", "Location": "R", "FireModifier": 0 },
+          { "Type": "10 37.5/10", "Location": "F", "FireModifier": 0 },
+          { "Type": "10 37.5/10", "Location": "L", "FireModifier": 0 },
+          { "Type": "10 37.5/10", "Location": "R", "FireModifier": 0 },
+          { "Type": "10 37.5/10", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "A",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Bantha", 
+      "Faction": "Terran Overlord Government",
+      "Type": "Frigate", 
+      "Thrust": 3,
+      "Shields": {
+        "Forward": 3,
+        "LeftForward": 3,
+        "LeftAft": 2,
+        "RightForward": 3,
+        "RightAft": 2,
+        "Aft": 3
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "B", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "25 37.5/20", "Location": "F", "FireModifier": 0 },
+          { "Type": "25 37.5/20", "Location": "L", "FireModifier": 0 },
+          { "Type": "25 37.5/20", "Location": "R", "FireModifier": 0 },
+          { "Type": "25 37.5/20", "Location": "A", "FireModifier": 0 },
+          { "Type": "50 15/30", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 15/30", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 15/30", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 15/30", "Location": "R", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "",
+          "Used": 0
+        }
+      }
+    },
+    {
+      "Name": "Valiant", 
+      "Faction": "Commonwealth",
+      "Type": "Frigate", 
+      "Thrust": 3,
+      "Shields": {
+        "Forward": 3,
+        "LeftForward": 3,
+        "LeftAft": 2,
+        "RightForward": 3,
+        "RightAft": 2,
+        "Aft": 3
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "", "Location": "", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "100 22.5/10", "Location": "L", "FireModifier": 0 },
+          { "Type": "100 22.5/10", "Location": "R", "FireModifier": 0 },
+          { "Type": "100 15/10", "Location": "L", "FireModifier": 0 },
+          { "Type": "100 15/10", "Location": "R", "FireModifier": 0 },
+          { "Type": "100 15/10", "Location": "F", "FireModifier": 0 },
+          { "Type": "100 15/10", "Location": "A", "FireModifier": 0 },
+          { "Type": "100 7.5/30", "Location": "F", "FireModifier": 0 },
+          { "Type": "100 7.5/30", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Repulse", 
+      "Faction": "Commonwealth",
+      "Type": "Battleship", 
+      "Thrust": 2,
+      "Shields": {
+        "Forward": 4,
+        "LeftForward": 4,
+        "LeftAft": 4,
+        "RightForward": 4,
+        "RightAft": 4,
+        "Aft": 4
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "D", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "100 37.5/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "100 37.5/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "100 37.5/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "100 37.5/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 37.5/30", "Location": "F", "FireModifier": 0 },
+          { "Type": "50 37.5/30", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 37.5/30", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 37.5/30", "Location": "A", "FireModifier": 0 },
+          { "Type": "25 22.5/15", "Location": "F", "FireModifier": 0 },
+          { "Type": "25 22.5/15", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "E",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Exeter", 
+      "Faction": "Commonwealth",
+      "Type": "Destroyer", 
+      "Thrust": 5,
+      "Shields": {
+        "Forward": 2,
+        "LeftForward": 2,
+        "LeftAft": 2,
+        "RightForward": 2,
+        "RightAft": 2,
+        "Aft": 2
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "A", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "50 22.5/15", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 22.5/15", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 22.5/15", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 22.5/15", "Location": "R", "FireModifier": 0 },
+          { "Type": "25 22.5/15", "Location": "F", "FireModifier": 0 },
+          { "Type": "25 22.5/15", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "C",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "County", 
+      "Faction": "Commonwealth",
+      "Type": "Frigate", 
+      "Thrust": 4,
+      "Shields": {
+        "Forward": 3,
+        "LeftForward": 3,
+        "LeftAft": 2,
+        "RightForward": 3,
+        "RightAft": 2,
+        "Aft": 3
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "", "Location": "", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "50 37.5/5", "Location": "F", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "25 7.5/30", "Location": "L", "FireModifier": 0 },
+          { "Type": "25 7.5/30", "Location": "R", "FireModifier": 0 },
+          { "Type": "10 7.5/30", "Location": "F", "FireModifier": 0 },
+          { "Type": "10 7.5/30", "Location": "A", "FireModifier": 0 },
+          { "Type": "10 7.5/30", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Carthage", 
+      "Faction": "Commonwealth",
+      "Type": "Cruiser", 
+      "Thrust": 3,
+      "Shields": {
+        "Forward": 4,
+        "LeftForward": 3,
+        "LeftAft": 3,
+        "RightForward": 3,
+        "RightAft": 3,
+        "Aft": 4
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "A", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "100 37.5/20", "Location": "L", "FireModifier": 0 },
+          { "Type": "100 37.5/20", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "F", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "A", "FireModifier": 0 },
+          { "Type": "10 37.5/10", "Location": "F", "FireModifier": 0 },
+          { "Type": "10 37.5/10", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "A",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Ajax", 
+      "Faction": "Commonwealth",
+      "Type": "Destroyer", 
+      "Thrust": 5,
+      "Shields": {
+        "Forward": 2,
+        "LeftForward": 2,
+        "LeftAft": 2,
+        "RightForward": 2,
+        "RightAft": 2,
+        "Aft": 2
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "A", "Location": "F", "FireModifier": 0 },
+        "Bays": [
+          { "Type": "50 37.5/5", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 37.5/5", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 22.5/10", "Location": "F", "FireModifier": 0 },
+          { "Type": "50 22.5/10", "Location": "L", "FireModifier": 0 },
+          { "Type": "50 22.5/10", "Location": "R", "FireModifier": 0 },
+          { "Type": "50 22.5/10", "Location": "A", "FireModifier": 0 }
+        ],
+        "Missile": {
+          "Type": "B",
+          "Used": 0
+        },
+        "Turrets": {
+          "Left": 0,
+          "Right": 0 
+        }
+      }
+    },
+    {
+      "Name": "Shiva", 
+      "Faction": "Terran Overlord Government",
+      "Type": "Battleship", 
+      "Thrust": 2,
+      "Shields": {
+        "Forward": 4,
+        "LeftForward": 4,
+        "LeftAft": 4,
+        "RightForward": 4,
+        "RightAft": 4,
+        "Aft": 4
+      },
+      "Armor": {},
+      "Armaments": {
+        "Spinal": { "Type": "E", "Location": "F" },
+        "Bays": [
+          { "Type": "100 37.5/20", "Location": "L" },
+          { "Type": "100 37.5/20", "Location": "L" },
+          { "Type": "100 37.5/20", "Location": "R" },
+          { "Type": "100 37.5/20", "Location": "R" },
+          { "Type": "25 37.5/20", "Location": "F" },
+          { "Type": "25 37.5/20", "Location": "L" },
+          { "Type": "25 37.5/20", "Location": "L" },
+          { "Type": "25 37.5/20", "Location": "R" },
+          { "Type": "25 37.5/20", "Location": "R" },
+          { "Type": "25 37.5/20", "Location": "A" },
+          { "Type": "50 22.5/5", "Location": "F" },
+          { "Type": "50 22.5/5", "Location": "A" }
+        ],
+        "Missile": { "Type": "E", "Used": 0 },
+        "Turrets": { "Left": [6, 6, 5, 4], "Right": [6, 6, 5, 4] }
+      }
+    }
+  ],
+  "Fighters": [
+    { "Name": "Arcubalista", "Thrust": 13, "Armour": 53, "CRA": 10, "LRA": 6, "Missiles": 2 },
+    { "Name": "Arcus", "Thrust": 5, "Armour": 100, "CRA": 50, "LRA": 46, "Missiles": 3 },
+    { "Name": "Avenger", "Thrust": 7, "Armour": 80, "CRA": 48, "LRA": 29, "Missiles": 0 },
+    { "Name": "Bumblebee", "Thrust": 10, "Armour": 40, "CRA": 17, "LRA": 7, "Missiles": 1 }
+  ]
+}

@@ -1,29 +1,36 @@
 import data from './data.json'
-import ships from './data/ships/ships'
+import ShipYard from './ShipYard.json'
 
-function constructShip (faction, name) {
-  const ship = structuredClone(ships[faction].find(s => s.Name === name))
+function constructShip (name) {
+  const { Ships } = ShipYard
+  const ship = structuredClone(Ships.find(s => s.Name === name))
   const AC = [
     'FrontLeft', 'Front', 'FrontRight',
     'AftLeft', 'Aft', 'AftRight'
   ]
   for (const armorLocation of AC) {
-    ship.Armor[armorLocation] = []
-    const [x, y] = data.ShipProperties[ship.Type].AC
-    for (let i = 0; i < x; i++) {
-      const row = []
-      for (let i = 0; i < y; i++) {
-        row.push(0)
+    ship.Armor[armorLocation] = {}
+    const [acX, acY] = data.ShipProperties[ship.Type].AC
+    for (let y = 0; y < acY; y++) {
+      ship.Armor[armorLocation][y] = {}
+      for (let x = 0; x < acX; x++) {
+        ship.Armor[armorLocation][y][x] = { Turn: null, Value: null }
       }
-      ship.Armor[armorLocation].push(row)
     }
   }
 
-  ship.InternalDamage = []
-  ship.Drift = [null]
-  ship.Maneuver = [null]
-  ship.Velocity = [null]
-  ship.Weapons = [null]
+  ship.Internals = {}
+  const [internalX, internalY] = data.ShipProperties[ship.Type].Internals
+  for (let y = 0; y < internalY; y++) {
+    ship.Internals[y] = {}
+    for (let x = 0; x < internalX; x++) {
+      ship.Internals[y][x] = { Turn: null }
+    }
+  }
+  ship.Drift = [0]
+  ship.Velocity = [0]
+  ship.Maneuver = ['N']
+  ship.Weapons = ['N']
 
   return ship
 }

@@ -1,38 +1,22 @@
 .weapons_table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.weapons_table thead th {
-  text-align: center;
-}
-
-.weapons_table tbody th {
-  white-space: nowrap;
-  width: 10%;
-}
-
-.c1 {
-  width: 22%;
-}
-
-.c5 {
-  width: 9%;
-}
-
-table tbody th,td {
-  border: 1px solid black;
+  font-size: 0.65rem;
 }
 
 .weapons_table th {
   text-align: left;
-  font-size: 70%;
+}
+
+.weapons_table th:not(:first-child) {
+  text-align: center;
+}
+
+.weapons_table th {
+  padding: 2px;
 }
 
 .weapons_table td {
-  font-size: 80%;
   text-align: center;
+  padding: 2px;
 }
 
 .missiles {

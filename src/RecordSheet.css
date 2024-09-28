@@ -2,18 +2,6 @@
   display: flex;
 }
 
-.left {
-  display: flex;
-  flex-direction: column;
-  width: 55vw;
-  align-items: center;
-}
-
-.right {
-  width: 45vw;
-  padding: 10px;
-}
-
 .ac_cont {
   display: grid;
   grid-template-columns: repeat(10, 1fr);

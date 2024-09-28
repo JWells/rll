@@ -1,9 +1,9 @@
 {
   "ShipProperties": {
-    "Battleship": { "AC": [10, 20], "Turrets": [6, 6, 5, 4] },
-    "Cruiser": { "AC": [10, 10], "Turrets": [5, 5, 4, 3] },
-    "Destroyer": { "AC": [10, 5], "Turrets": [3, 3, 2, 1]  },
-    "Frigate": { "AC": [10, 8], "Turrets": [4, 3, 2, 1]  }
+    "Battleship": { "AC": [10, 20], "Internals": [10, 21], "Turrets": [6, 6, 5, 4] },
+    "Cruiser": { "AC": [10, 10], "Internals": [10, 14], "Turrets": [5, 5, 4, 3] },
+    "Destroyer": { "AC": [10, 5], "Internals": [10, 6], "Turrets": [3, 3, 2, 1]  },
+    "Frigate": { "AC": [10, 8], "Internals": [10, 9], "Turrets": [4, 3, 2, 1]  }
   },
   "Weapons": {
     "Missiles": {

@@ -1,10 +1,12 @@
-import './Weapons.css'
+import { useFleet, useFleetDispatch } from './LeviathanContext'
 import data from './data.json'
+import cn from 'classnames'
+import './Weapons.css'
 
-function Weapons ({
-  fireMissile,
-  ship
-}) {
+function Weapons () {
+  const dispatch = useFleetDispatch()
+  const { fleet, shipIndex } = useFleet()
+  const ship = fleet[shipIndex]
   const {
     Bays,
     Missile,
@@ -25,7 +27,7 @@ function Weapons ({
 
   return (
     <div>
-      <table className='weapons_table'>
+      <table className='weapons_table table table-bordered table-sm text-nowrap text-center mb-1'>
         <thead>
           <tr>
             <th className='c1' />
@@ -39,7 +41,7 @@ function Weapons ({
                 )
               })
             }
-            <th className='c5' rowSpan={2}>Fire Modifier</th>
+            <th className='c5 text-wrap' rowSpan={2}>Fire Modifier</th>
           </tr>
           <tr>
             <th />
@@ -68,8 +70,8 @@ function Weapons ({
                     )
                   })
                 }
-              <td></td>
-            </tr>
+                <td></td>
+              </tr>
           }
           {
             Bays.map((bay, index) => {
@@ -93,18 +95,17 @@ function Weapons ({
           }
           </tbody>
         </table>
-
         {
           turretDmg &&
-            <table className='weapons_table'>
+            <table className='weapons_table table table-bordered table-sm text-center mb-1'>
               <thead>
                 <tr>
-                  <th>R</th>
+                  <th>Range</th>
                   <th>0</th>
                   <th>1</th>
                   <th>2</th>
                   <th>3</th>
-                  <th rowSpan={2}>Fire Modifier</th>
+                  <th rowSpan={2} className='text-wrap'>Fire Modifier</th>
                 </tr>
                 <tr>
                   <th>To-Hit #</th>
@@ -120,7 +121,7 @@ function Weapons ({
                   {
                     turretDmg.map((toHitNumber, index) => {
                       return (
-                        <td key={`turret-${index}`}>
+                        <td key={`turret-${index}`} className='text-center'>
                           {toHitNumber}
                         </td>
                       )
@@ -133,7 +134,7 @@ function Weapons ({
                   {
                     turretDmg.map((toHitNumber, index) => {
                       return (
-                        <td key={`turret-${index}`}>
+                        <td key={`turret-${index}`} className='text-center'>
                           {toHitNumber}
                         </td>
                       )
@@ -151,14 +152,12 @@ function Weapons ({
                 <div>Missile Shots</div>
                 {
                   missileShots.map((shot, index) => {
-                    const classes = ['missile_shot']
-                    if (index + 1 <= Missile.Used) {
-                      classes.push('missile_fired')
-                    }
                     return (
                       <div
-                      onClick={fireMissile}
-                      className={classes.join(' ')}
+                      className={cn('missile_shot', {
+                        'missile_fired': (index + 1) <= Missile.Used
+                      })}
+                      onClick={() => dispatch({ type: 'fireMissile' })}
                       key={`missile-shot-${index}`}
                     />
                     )
@@ -170,7 +169,7 @@ function Weapons ({
               </div>
             </div>
         }
-      </div>
+    </div>
   )
 }
 

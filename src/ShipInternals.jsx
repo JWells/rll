@@ -1,40 +1,21 @@
-import BattleshipInternals from './components/BattleshipInternals'
+import { useFleet } from './LeviathanContext'
+import BattleshipInternals from './BattleshipInternals'
+import CruiserInternals from './CruiserInternals'
+import DestroyerInternals from './DestroyerInternals'
+import FrigateInternals from './FrigateInternals'
 
-function ShipInternals ({
-  dispatch,
-  damage,
-  turn,
-  type
-}) {
+export default function ShipInternals () {
+  const { fleet, shipIndex } = useFleet()
+  const ship = fleet[shipIndex]
   return (
     <div>
-      <div className='internal_title'>
+      <div className='text-center'>
         Internal Component Block
       </div>
-      <div className='section_row'>
-        <div className='bsInt'>
-          <div className='columns'>1</div>
-          <div className='columns'>2</div>
-          <div className='columns'>3</div>
-          <div className='columns'>4</div>
-          <div className='columns'>5</div>
-          <div className='columns'>6</div>
-          <div className='columns'>7</div>
-          <div className='columns'>8</div>
-          <div className='columns'>9</div>
-          <div className='columns'>10</div>
-          {
-            type === 'Battleship' &&
-              <BattleshipInternals
-                damage={damage}
-                dispatch={dispatch}
-                turn={turn}
-              />
-          }
-        </div>
-      </div>
+      { ship.Type === 'Battleship' && <BattleshipInternals /> }
+      { ship.Type === 'Cruiser' && <CruiserInternals /> }
+      { ship.Type === 'Frigate' && <FrigateInternals /> }
+      { ship.Type === 'Destroyer' && <DestroyerInternals /> }
     </div>
   )
 }
-
-export default ShipInternals
