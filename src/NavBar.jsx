@@ -53,14 +53,11 @@ export default function NavBar () {
             href='#'
             onClick={() => dispatch({ type: 'incrementTurn', target: 'turn' })}
           >
-            <ruby>
-              {
-                undo
-                  ? <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='currentColor' d='m11.5 12l8.5 6V6m-9 12V6l-8.5 6z '/></svg>
-                  : <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='currentColor' d='M13 6v12l8.5-6M4 18l8.5-6L4 6z '/></svg>
-              }
-              <rt>{turn}</rt>
-            </ruby>
+            {
+              undo
+                ? <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='currentColor' d='m11.5 12l8.5 6V6m-9 12V6l-8.5 6z '/></svg>
+                : <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path fill='currentColor' d='M13 6v12l8.5-6M4 18l8.5-6L4 6z '/></svg>
+            }
           </a>
         </li>
         <li

@@ -32,6 +32,7 @@ export function useFleetDispatch () {
 }
 
 const initialState = {
+  ablative: true,
   fleet: {},
   shipIndex: null,
   tab: 'settings',
@@ -90,6 +91,10 @@ const reducer = (state, action) => {
         }
         break
       }
+      case 'toggleAttackType': {
+        draft.ablative = !state.ablative
+        break
+      }
       case 'selectTab':
         draft.tab = action.value
         if (action.value === 'ship') {
@@ -102,14 +107,13 @@ const reducer = (state, action) => {
         draft.undo = !undo
         break
       case 'markArmor': {
-        const { armorLocation, x, y } = action
-        const currentValue = draft.fleet[shipIndex].Armor[armorLocation][y][x].Value
-        let value = Math.min(2, (currentValue || 0) + 1)
+        const { armorLocation, x, y, value } = action
+        let newValue = value
         if (draft.undo) {
-          value = Math.max(0, (currentValue || 0) - 1)
+          newValue = -value
         }
         draft.fleet[shipIndex].Armor[armorLocation][y][x].Turn = turn
-        draft.fleet[shipIndex].Armor[armorLocation][y][x].Value = value
+        draft.fleet[shipIndex].Armor[armorLocation][y][x].Value = newValue
         break
       }
       case 'markInternal': {

@@ -55,8 +55,7 @@ function Section ({
   label,
   lobalLocation = 'top'
 }) {
-  const { turn } = useFleet()
-  console.log('bxoes', boxes)
+  const { ablative, turn } = useFleet()
   const [mouseDown, setMouseDown] = useState(false)
   const dispatch = useFleetDispatch()
   const dips = [
@@ -71,7 +70,8 @@ function Section ({
         type: 'markArmor',
         armorLocation: label.replace(/ /, ''),
         x,
-        y
+        y,
+        value: ablative ? 1 : 2
       })
     }
   }
@@ -79,7 +79,14 @@ function Section ({
   return (
     <div
       className={`section ${dips ? 'dip' : ''}`}
-      onMouseLeave={() => setMouseDown(false)}
+      onPointerMove={(e) => {
+        const elem = document.elementFromPoint(e.clientX, e.clientY)
+        if (elem && elem.getAttribute('x') && elem.getAttribute('y')) {
+          markArmor(elem.getAttribute('x'), elem.getAttribute('y'))
+        } else {
+          setMouseDown(false)
+        }
+      }}
     >
       {
         lobalLocation === 'top' &&
@@ -102,17 +109,11 @@ function Section ({
                 return (
                   <span
                     key={`${y}-${x}`}
-                    onMouseOver={() => {
-                      if (mouseDown) { markArmor(x, y) }
-                    }}
-                    onMouseDown={() => {
-                      console.log('down')
+                    x={x}
+                    y={y}
+                    onPointerDown={() => {
                       setMouseDown(true)
                       markArmor(x, y)
-                    }}
-                    onMouseUp={() => {
-                      console.log('up')
-                      setMouseDown(false)
                     }}
                     className={cn('ac_item', {
                       'dmgNormal': col.Value === 1,
@@ -134,7 +135,8 @@ function Section ({
 }
 
 export default function RecordSheet () {
-  const { fleet, shipIndex, turn, undo } = useFleet()
+  const { ablative, fleet, shipIndex, turn, undo } = useFleet()
+  const dispatch = useFleetDispatch()
   const ship = fleet[shipIndex]
   const FRONT = [
     'Front Left', 'Front', 'Front Right'
@@ -142,6 +144,8 @@ export default function RecordSheet () {
   const AFT = [
     'Aft Left', 'Aft', 'Aft Right'
   ]
+  const toggleAttackType = () => dispatch({ type: 'toggleAttackType' })
+
   return (
     <div className='row'>
       <div className='col'>
@@ -156,6 +160,12 @@ export default function RecordSheet () {
               />
             ))
           }
+        </div>
+        <div className='d-flex fs-6 justify-content-center'>
+          <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='ablative' autoComplete='off' readOnly checked={ablative} />
+          <label className='btn btn-sm' htmlFor='ablative'>Ablative</label>
+          <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='piercing' autoComplete='off' readOnly checked={!ablative} />
+          <label className='btn btn-sm' htmlFor='piercing'>Peircing</label>
         </div>
         <div className='section_row'>
           {
