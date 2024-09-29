@@ -27,15 +27,19 @@
 }
 
 .dmgNormal {
-  background-color: gray;
+  background-color: #B1FAFF;
 }
 
 .dmgSpinal {
-  background-color: red;
+  background-color: #FFB6B1;
 }
 
 .dip {
   margin-top: 15px;
+}
+
+.dmgInactive {
+  filter: brightness(0.5);
 }
 
 .label {

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useFleet, useFleetDispatch } from './LeviathanContext'
 import Weapons from './Weapons'
 import ShipInternals from './ShipInternals'
@@ -54,6 +55,9 @@ function Section ({
   label,
   lobalLocation = 'top'
 }) {
+  const { turn } = useFleet()
+  console.log('bxoes', boxes)
+  const [mouseDown, setMouseDown] = useState(false)
   const dispatch = useFleetDispatch()
   const dips = [
     'Front Left',
@@ -62,16 +66,21 @@ function Section ({
   ].includes(label)
 
   const markArmor = (x, y) => {
-    dispatch({
-      type: 'markArmor',
-      armorLocation: label.replace(/ /, ''),
-      x,
-      y
-    })
+    if (boxes[y][x].Turn === null || boxes[y][x].Turn === turn) {
+      dispatch({
+        type: 'markArmor',
+        armorLocation: label.replace(/ /, ''),
+        x,
+        y
+      })
+    }
   }
 
   return (
-    <div className={`section ${dips ? 'dip' : ''}`}>
+    <div
+      className={`section ${dips ? 'dip' : ''}`}
+      onMouseLeave={() => setMouseDown(false)}
+    >
       {
         lobalLocation === 'top' &&
         <div className='label'>{label}</div>
@@ -93,10 +102,22 @@ function Section ({
                 return (
                   <span
                     key={`${y}-${x}`}
-                    onClick={() => markArmor(x, y)}
+                    onMouseOver={() => {
+                      if (mouseDown) { markArmor(x, y) }
+                    }}
+                    onMouseDown={() => {
+                      console.log('down')
+                      setMouseDown(true)
+                      markArmor(x, y)
+                    }}
+                    onMouseUp={() => {
+                      console.log('up')
+                      setMouseDown(false)
+                    }}
                     className={cn('ac_item', {
                       'dmgNormal': col.Value === 1,
-                      'dmgSpinal': col.Value === 2
+                      'dmgSpinal': col.Value === 2,
+                      'dmgInactive': col.Turn !== turn
                     })}
                   />
                 )
@@ -128,11 +149,11 @@ export default function RecordSheet () {
           {
             FRONT.map(location => (
               <Section
-              editType={undo}
-              key={location}
-              label={location}
-              boxes={ship.Armor[location.replace(/ /, '')]}
-            />
+                editType={undo}
+                key={location}
+                label={location}
+                boxes={ship.Armor[location.replace(/ /, '')]}
+              />
             ))
           }
         </div>
@@ -140,11 +161,11 @@ export default function RecordSheet () {
           {
             AFT.map(location => (
               <Section
-              key={location}
-              label={location}
-              lobalLocation='bottom'
-              boxes={ship.Armor[location.replace(/ /, '')]}
-            />
+                key={location}
+                label={location}
+                lobalLocation='bottom'
+                boxes={ship.Armor[location.replace(/ /, '')]}
+              />
             ))
           }
         </div>
