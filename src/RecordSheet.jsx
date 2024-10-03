@@ -166,7 +166,7 @@ export default function RecordSheet () {
               <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='ablative' autoComplete='off' readOnly checked={ablative} />
               <label className='btn btn-sm' htmlFor='ablative'>Ablative</label>
               <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='piercing' autoComplete='off' readOnly checked={!ablative} />
-              <label className='btn btn-sm' htmlFor='piercing'>Peircing</label>
+              <label className='btn btn-sm' htmlFor='piercing'>Piercing</label>
             </div>
             <div className='section_row'>
               {
