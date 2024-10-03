@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useFleet, useFleetDispatch } from './LeviathanContext'
 import Weapons from './Weapons'
+import Missiles from './Missiles'
 import ShipInternals from './ShipInternals'
 import cn from 'classnames'
 import './RecordSheet.css'
@@ -193,83 +194,84 @@ export default function RecordSheet () {
                             }
                           })
                         }
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th>Velocity</th>
-                              <TrackElement ship={ship} type='Velocity' />
-                            </tr>
-                            <tr>
-                              <th>Drift</th>
-                              <TrackElement ship={ship} type='Drift' />
-                            </tr>
-                            <tr>
-                              <th>Weapons</th>
-                              <TrackElement ship={ship} type='Weapons' />
-                            </tr>
-                            <tr>
-                              <th>Maneuver</th>
-                              <TrackElement ship={ship} type='Maneuver' />
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className='section_row'>
-                        <div className='d-flex justify-content-around w-100 py-3'>
-                          <div className='shieldContainer'>
-                            <div className='shieldSides'>
-                              <div className='shieldInput'>{ship.Shields.LeftForward}</div>
-                              <div className='shieldInput'>{ship.Shields.LeftAft}</div>
-                            </div>
-                            <div className='shieldCenter'>
-                              <div className='shieldInput'>{ship.Shields.Forward}</div>
-                              <div className='shieldLabel'>Shields</div>
-                              <div className='shieldInput'>{ship.Shields.Aft}</div>
-                            </div>
-                            <div className='shieldSides'>
-                              <div className='shieldInput'>{ship.Shields.RightForward}</div>
-                              <div className='shieldInput'>{ship.Shields.RightAft}</div>
-                            </div>
-                          </div>
-                          <table className='thTable'>
-                            <tbody>
-                              <tr>
-                                <th className='thrustTitle' colSpan='2'>Thrust</th>
-                              </tr>
-                              <tr>
-                                <th>Normal</th>
-                                <td>{ship.Thrust}</td>
-                              </tr>
-                              <tr>
-                                <th>Damaged</th>
-                                <td>?</td>
-                              </tr>
-                              <tr>
-                                <th>Double</th>
-                                <td>?</td>
-                              </tr>
-                              <tr>
-                                <th>Damaged</th>
-                                <td>?</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>Velocity</th>
+                        <TrackElement ship={ship} type='Velocity' />
+                      </tr>
+                      <tr>
+                        <th>Drift</th>
+                        <TrackElement ship={ship} type='Drift' />
+                      </tr>
+                      <tr>
+                        <th>Weapons</th>
+                        <TrackElement ship={ship} type='Weapons' />
+                      </tr>
+                      <tr>
+                        <th>Maneuver</th>
+                        <TrackElement ship={ship} type='Maneuver' />
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className='d-flex justify-content-center py-3'>
+                  <Missiles />
+                </div>
+                <div className='d-flex justify-content-around w-100 py-3'>
+                  <div className='shieldContainer'>
+                    <div className='shieldSides'>
+                      <div className='shieldInput'>{ship.Shields.LeftForward}</div>
+                      <div className='shieldInput'>{ship.Shields.LeftAft}</div>
                     </div>
-                    <div className='col'>
-                      <div className='content_row'>
-                        <Weapons ship={ship} />
-                      </div>
-                      <div className='content_row'>
-                        <ShipInternals
-                        damage={ship.InternalDamage}
-                        type={ship.Type}
-                        turn={turn}
-                      />
-                        </div>
-                      </div>
+                    <div className='shieldCenter'>
+                      <div className='shieldInput'>{ship.Shields.Forward}</div>
+                      <div className='shieldLabel'>Shields</div>
+                      <div className='shieldInput'>{ship.Shields.Aft}</div>
                     </div>
+                    <div className='shieldSides'>
+                      <div className='shieldInput'>{ship.Shields.RightForward}</div>
+                      <div className='shieldInput'>{ship.Shields.RightAft}</div>
+                    </div>
+                  </div>
+                  <table className='thTable'>
+                    <tbody>
+                      <tr>
+                        <th className='thrustTitle' colSpan='2'>Thrust</th>
+                      </tr>
+                      <tr>
+                        <th>Normal</th>
+                        <td>{ship.Thrust}</td>
+                      </tr>
+                      <tr>
+                        <th>Damaged</th>
+                        <td>?</td>
+                      </tr>
+                      <tr>
+                        <th>Double</th>
+                        <td>?</td>
+                      </tr>
+                      <tr>
+                        <th>Damaged</th>
+                        <td>?</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className='col'>
+                <div className='content_row'>
+                  <Weapons ship={ship} />
+                </div>
+                <div className='content_row'>
+                  <ShipInternals
+                  damage={ship.InternalDamage}
+                  type={ship.Type}
+                  turn={turn}
+                />
+                  </div>
+                </div>
+              </div>
   )
 }

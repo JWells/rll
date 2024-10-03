@@ -18,28 +18,3 @@
   text-align: center;
   padding: 2px;
 }
-
-.missiles {
-  margin-top: 5px;
-}
-
-.missile_row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.missile_shots {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 30% repeat(auto-fit, 20px); 
-  grid-column-gap: 1rem;
-}
-
-.missile_shot {
-  outline: 1px solid black;
-}
-
-.missile_fired {
-  background-color: grey;
-}

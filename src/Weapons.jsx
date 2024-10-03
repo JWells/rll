@@ -1,15 +1,12 @@
-import { useFleet, useFleetDispatch } from './LeviathanContext'
+import { useFleet } from './LeviathanContext'
 import data from './data.json'
-import cn from 'classnames'
 import './Weapons.css'
 
 function Weapons () {
-  const dispatch = useFleetDispatch()
   const { fleet, shipIndex } = useFleet()
   const ship = fleet[shipIndex]
   const {
     Bays,
-    Missile,
     Spinal,
     Turrets,
   } = ship.Armaments
@@ -17,12 +14,6 @@ function Weapons () {
   let turretDmg
   if (Turrets) {
     turretDmg = data.Weapons.Turrets[ship.Type]
-  }
-
-  const missileType = data.Weapons.Missiles[Missile.Type]
-  let missileShots
-  if (missileType) {
-    missileShots = Array(missileType.Shots).fill(null)
   }
 
   return (
@@ -144,30 +135,6 @@ function Weapons () {
                 </tr>
               </tbody>
             </table>
-        }
-        {
-          missileType &&
-            <div className='missiles'>
-              <div className='missile_shots'>
-                <div>Missile Shots</div>
-                {
-                  missileShots.map((shot, index) => {
-                    return (
-                      <div
-                      className={cn('missile_shot', {
-                        'missile_fired': (index + 1) <= Missile.Used
-                      })}
-                      onClick={() => dispatch({ type: 'fireMissile' })}
-                      key={`missile-shot-${index}`}
-                    />
-                    )
-                  })
-                }
-              </div>
-              <div className='missile_row'>
-                <div>Missile Type: {Missile.Type}</div> <div>Damage: {missileType.Damage}</div>
-              </div>
-            </div>
         }
     </div>
   )
