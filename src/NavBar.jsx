@@ -5,19 +5,19 @@ import { useFleet, useFleetDispatch } from './LeviathanContext'
 export default function NavBar () {
   const dispatch = useFleetDispatch()
   const {
+    fighters,
     fleet,
-    shipIndex,
+    recordSheetIndex,
     tab,
-    turn,
     undo
   } = useFleet()
 
   const formattedName = (index, name) => {
-    return (
-      <ruby>
-        {name}{index > 1 ? <rt>{index}</rt>: ''}
-      </ruby>
-    )
+    let result = name
+    if (index > 1) {
+      result += ` (${index})`
+    }
+    return result
 }
 
   return (
@@ -33,7 +33,7 @@ export default function NavBar () {
                 key={tabKey}
               >
                 <a
-                  className={cn('nav-link', { 'active': tab === 'ship' && shipIndex === k })}
+                  className={cn('nav-link', { 'active': tab === 'ship' && recordSheetIndex === k })}
                   aria-current={tab}
                   href='#'
                   onClick={() => dispatch({ type: 'selectTab', value: 'ship', index: k })}
@@ -43,6 +43,18 @@ export default function NavBar () {
               </li>
             )
           })
+        }
+        {
+          Object.keys(fighters).length > 0 &&
+            <li className='nav-item'>
+              <a
+                className={cn('nav-link', { 'active': tab === 'fighter' })}
+                href='#'
+                onClick={() => dispatch({ type: 'selectTab', value: 'fighter' })}
+              >
+                Fighters
+              </a>
+          </li>
         }
         <li
           className='nav-item ms-auto'

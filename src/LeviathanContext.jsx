@@ -5,7 +5,7 @@ import {
   useContext,
   useReducer
 } from 'react'
-import constructShip from './constructShip'
+import { constructShip, constructFighter } from './utils'
 
 const LeviathanContext = createContext(null)
 const LeviathanDispatchContext = createContext(null)
@@ -33,8 +33,10 @@ export function useFleetDispatch () {
 
 const initialState = {
   ablative: true,
+  faction: null,
   fleet: {},
-  shipIndex: null,
+  fighters: {},
+  recordSheetIndex: null,
   tab: 'settings',
   turn: 1,
   undo: false
@@ -42,10 +44,27 @@ const initialState = {
 
 const reducer = (state, action) => {
   const newState = produce(state, draft => {
-    const { fleet, turn, shipIndex, undo } = state
+    const { fleet, turn, recordSheetIndex, undo } = state
     switch (action.type) {
       case 'reset':
         return initialState
+      case 'setFaction':
+        draft.faction = action.value
+        break
+      case 'addFighter': {
+        let nextIndex = 0
+        const indexes = Object.keys(state.fighters)
+        if (indexes.length > 0) {
+          nextIndex = Number(Math.max(...indexes)) + 1
+        }
+        const newFighters = constructFighter(action.value)
+        newFighters.Id = nextIndex
+        draft.fighters[nextIndex] = newFighters
+        break
+      }
+      case 'removeFighter':
+        delete draft.fighters[action.value]
+        break
       case 'addToFleet': {
         let nextIndex = 0
         const indexes = Object.keys(fleet)
@@ -85,8 +104,8 @@ const reducer = (state, action) => {
           for (const index of Object.keys(state.fleet)) {
             draft.fleet[index].Weapons.push('N')
             draft.fleet[index].Maneuver.push('N')
-            draft.fleet[index].Velocity.push(state.fleet[shipIndex].Velocity[turn - 1])
-            draft.fleet[index].Drift.push(state.fleet[shipIndex].Drift[turn - 1])
+            draft.fleet[index].Velocity.push(state.fleet[recordSheetIndex].Velocity[turn - 1])
+            draft.fleet[index].Drift.push(state.fleet[recordSheetIndex].Drift[turn - 1])
           }
         }
         break
@@ -98,9 +117,9 @@ const reducer = (state, action) => {
       case 'selectTab':
         draft.tab = action.value
         if (action.value === 'ship') {
-          draft.shipIndex = action.index
+          draft.recordSheetIndex = action.index
         } else {
-          draft.shipIndex = null
+          draft.recordSheetIndex = null
         }
         break
       case 'toggleUndo':
@@ -112,14 +131,14 @@ const reducer = (state, action) => {
         if (draft.undo) {
           newValue = -value
         }
-        draft.fleet[shipIndex].Armor[armorLocation][y][x].Turn = turn
-        draft.fleet[shipIndex].Armor[armorLocation][y][x].Value = newValue
+        draft.fleet[recordSheetIndex].Armor[armorLocation][y][x].Turn = turn
+        draft.fleet[recordSheetIndex].Armor[armorLocation][y][x].Value = newValue
         break
       }
       case 'markInternal': {
         let value = turn
         if (draft.undo) { value = null }
-        draft.fleet[shipIndex].Internals[action.y][action.x].Turn = value
+        draft.fleet[recordSheetIndex].Internals[action.y][action.x].Turn = value
         break
       }
       case 'trackPower': {
@@ -127,16 +146,16 @@ const reducer = (state, action) => {
         const dependent = target === 'Weapons' ? 'Maneuver' : 'Weapons'
         const turnIndex = turn - 1
         
-        let currentValue = fleet[shipIndex][target][turnIndex]
+        let currentValue = fleet[recordSheetIndex][target][turnIndex]
         if (currentValue === 'N') {
-          draft.fleet[shipIndex][target][turnIndex] = 'x2'
-          draft.fleet[shipIndex][dependent][turnIndex] = '-'
+          draft.fleet[recordSheetIndex][target][turnIndex] = 'x2'
+          draft.fleet[recordSheetIndex][dependent][turnIndex] = '-'
         } else if (currentValue === 'x2') {
-          draft.fleet[shipIndex][target][turnIndex] = '-'
-          draft.fleet[shipIndex][dependent][turnIndex] = 'x2'
+          draft.fleet[recordSheetIndex][target][turnIndex] = '-'
+          draft.fleet[recordSheetIndex][dependent][turnIndex] = 'x2'
         } else if (currentValue === '-') {
-          draft.fleet[shipIndex][target][turnIndex] = 'N'
-          draft.fleet[shipIndex][dependent][turnIndex] = 'N'
+          draft.fleet[recordSheetIndex][target][turnIndex] = 'N'
+          draft.fleet[recordSheetIndex][dependent][turnIndex] = 'N'
         }
         break
       }
@@ -147,14 +166,29 @@ const reducer = (state, action) => {
         if (undo) {
           value = -1
         }
-        const currentValue = fleet[shipIndex][target][turnIndex]
-        draft.fleet[shipIndex][target][turnIndex] = Math.max(0, currentValue + value)
+        const currentValue = fleet[recordSheetIndex][target][turnIndex]
+        draft.fleet[recordSheetIndex][target][turnIndex] = Math.max(0, currentValue + value)
         break
       }
       case 'fireMissile': {
-        const shots = data.Weapons.Missiles[state.fleet[shipIndex].Armaments.Missile.Type].Shots
-        const currentValue = state.fleet[shipIndex].Armaments.Missile.Used
-        draft.fleet[shipIndex].Armaments.Missile.Used = Math.min(shots, currentValue + 1)
+        const shots = data.Weapons.Missiles[state.fleet[recordSheetIndex].Armaments.Missile.Type].Shots
+        const currentValue = state.fleet[recordSheetIndex].Armaments.Missile.Used
+        draft.fleet[recordSheetIndex].Armaments.Missile.Used = Math.min(shots, currentValue + 1)
+        break
+      }
+      case 'fighterDmg': {
+        const { index, x, y } = action
+        let newValue = 1
+        if (draft.undo) {
+          newValue = null
+        }
+        if (!draft.fighters[index].Armor[y]) {
+          draft.fighters[index].Armor[y] = {}
+        }
+        draft.fighters[index].Armor[y][x] = {
+          Turn: turn,
+          Value: newValue
+        }
         break
       }
       default:

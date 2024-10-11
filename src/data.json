@@ -53,5 +53,11 @@
       "Destroyer":  [3, 3, 2, 1],
       "Frigate":  [4, 3, 2, 1]
     }
+  },
+  "FighterGroupings": {
+    "Fighter": { "MemberType": "Fighter", "FighterCount": 1 },
+    "Squadron": { "MemberType": "Fighter", "FighterCount": 6 },
+    "Flight": { "MemberType": "Squadron", "FighterCount": 24 },
+    "Group": { "MemberType": "Flight", "FighterCount": 72 }
   }
 }

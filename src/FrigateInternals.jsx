@@ -2,8 +2,8 @@ import { useFleet, useFleetDispatch } from './LeviathanContext'
 
 export default function FrigateInteranls () {
   const dispatch = useFleetDispatch()
-  const { fleet, shipIndex } = useFleet()
-  const ship = fleet[shipIndex]
+  const { fleet, recordSheetIndex } = useFleet()
+  const ship = fleet[recordSheetIndex]
 
   const internals = ship.Internals
 

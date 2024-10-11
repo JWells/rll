@@ -1,0 +1,140 @@
+.fiBoxes {
+  display: grid;
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+  padding: 10px 0;
+  font-size: smaller;
+}
+
+.fiDisabled {
+  background-color: #525252;
+}
+
+.fiBoxes .fiBox {
+  aspect-ratio: 1 / 1;
+  border: 1px solid black;
+}
+
+.fiHead {
+  grid-row: 1;
+  grid-column: 1 / 19;
+}
+
+.fiCRA {
+  text-align: center;
+  grid-row: 1;
+  grid-column: 21 / 23;
+}
+
+.fiCRABox {
+  font-size: smaller;
+  text-align: center;
+  align-content: center;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.fiCRA1 {
+  grid-row: 2;
+  grid-column: 21 / 23;
+}
+.fiCRA2 {
+  grid-row: 3;
+  grid-column: 21 / 23;
+}
+.fiCRA3 {
+  grid-row: 4;
+  grid-column: 21 / 23;
+}
+.fiCRA4 {
+  grid-row: 5;
+  grid-column: 21 / 23;
+}
+.fiCRA5 {
+  grid-row: 6;
+  grid-column: 21 / 23;
+}
+.fiCRA6 {
+  grid-row: 7;
+  grid-column: 21 / 23;
+}
+
+.fiLRA {
+  text-align: center;
+  grid-row: 1;
+  grid-column: 23 / 25;
+}
+
+.fiLRABox {
+  font-size: smaller;
+  text-align: center;
+  align-content: center;
+  border-bottom: 1px solid black;
+  height: 100%;
+}
+
+.fiLRA1 {
+  grid-row: 2;
+  grid-column: 23 / 25;
+}
+.fiLRA2 {
+  grid-row: 3;
+  grid-column: 23 / 25;
+}
+.fiLRA3 {
+  grid-row: 4;
+  grid-column: 23 / 25;
+}
+.fiLRA4 {
+  grid-row: 5;
+  grid-column: 23 / 25;
+}
+.fiLRA5 {
+  grid-row: 6;
+  grid-column: 23 / 25;
+}
+.fiLRA6 {
+  grid-row: 7;
+  grid-column: 23 / 25;
+}
+
+.fiRow1 {
+  grid-row: 2;
+}
+
+.fiRow2 {
+  grid-row: 3;
+}
+
+.fiRow3 {
+  grid-row: 4;
+}
+
+.fiRow4 {
+  grid-row: 5;
+}
+
+.fiRow5 {
+  grid-row: 6;
+}
+
+.fiRow6 {
+  grid-row: 7;
+}
+
+.fiM {
+  font-size: smaller;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-row: 5;
+  grid-column: 14 / 20;
+}
+
+.fiT {
+  font-size: smaller;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-row: 7;
+  grid-column: 14 / 20;
+}

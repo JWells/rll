@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useFleet, useFleetDispatch } from './LeviathanContext'
 import cn from 'classnames'
 import ShipYard from './ShipYard.json'
+import FighterYard from './FighterYard'
 
 function Options ({
   disabled = false,
@@ -61,16 +62,13 @@ function ListItem ({
 }
 
 export default function Settings () {
-  const { fleet } = useFleet()
+  const { faction, fleet } = useFleet()
   const dispatch = useFleetDispatch()
 
   let selectedShips = Object.values(fleet) || []
   selectedShips
     .sort((a, b) => a.Name.localeCompare(b.Name))
 
-  const selectedFaction = selectedShips[0]?.Faction || ''
-
-  const [faction, setFaction] = useState(selectedFaction)
   const [shipType, setShipType] = useState('')
   const [searchText, setSearchText] = useState('')
 
@@ -91,14 +89,14 @@ export default function Settings () {
     .sort((a, b) => a.Name.localeCompare(b.Name))
   return (
     <div>
-      <h4 className='pt-1 text-center'>Setup</h4>
+      <h4 className='pt-1 text-center'>{faction ? `${faction}` : 'Choose Faction'}</h4>
       <div className='d-flex justify-content-between align-items-center'>
         <div>
           {
             !faction &&
               <Options
                 disabled={selectedShips.length > 0}
-                onClick={(e) => setFaction(e.currentTarget.name)}
+                onClick={(e) => dispatch({ type: 'setFaction', value: e.currentTarget.name }) }
                 options={options}
                 selected={faction}
               />
@@ -116,7 +114,6 @@ export default function Settings () {
         <button
           className='btn btn-danger btn-sm'
           onClick={() => {
-            setFaction('')
             setShipType('')
             dispatch({ type: 'reset' })
           }}
@@ -126,61 +123,70 @@ export default function Settings () {
         </button>
       </div>
       <hr />
-      <div className='row'>
-        <div className='col'>
-          <div className='input-group mb-3'>
-            <input
-              type='search'
-              className='form-control'
-              placeholder='search'
-              value={searchText}
-              onChange={e => setSearchText(e.currentTarget.value)}
-            />
-          </div>
-        </div>
-        <div className='col'>
-          <h3 className='text-center'>Selected</h3>
-        </div>
-      </div>
-      <div className='row'>
-        <div className='col'>
-          <ul className='list-group'>
-            {
-              shipsOfFaction
-                .map(ship => {
-                  return (
-                    <ListItem
-                      icon='add'
-                      key={ship.Name}
-                      name={`${ship.Name} (${ship.Type})`}
-                      onClick={() => dispatch({ type: 'addToFleet', value: ship.Name })}
-                    />
-                  )
-                })
-            }
-          </ul>
-        </div>
-        <div className='col'>
-          <ul className='list-group'>
-            {
-              selectedShips.length === 0 &&
-                <li className='list-group-item'>Nothing Yet</li>
-            }
-            {
-              selectedShips.map(ship => {
-                return (
-                  <ListItem
-                    icon='remove'
-                    key={ship.ShipIndex}
-                    name={`${ship.Name} ${ship.Id > 1 ? ship.Id : '' }`}
-                    onClick={() => dispatch({ type: 'removeFromFleet', value: ship.ShipIndex })}
-                  />
-                )
-              })
-            }
-                </ul>
+      {
+        shipType === 'Ships' && 
+          <>
+          <div className='row'>
+            <div className='col'>
+              <div className='input-group mb-3'>
+                <input
+                type='search'
+                className='form-control'
+                placeholder='search'
+                value={searchText}
+                onChange={e => setSearchText(e.currentTarget.value)}
+              />
+                </div>
+              </div>
+              <div className='col'>
+                <h3 className='text-center'>Selected</h3>
               </div>
             </div>
-          </div>
+          <div className='row'>
+            <div className='col'>
+              <ul className='list-group'>
+                {
+                  shipsOfFaction
+                    .map(ship => {
+                      return (
+                        <ListItem
+                        icon='add'
+                        key={ship.Name}
+                        name={`${ship.Name} (${ship.Type})`}
+                        onClick={() => dispatch({ type: 'addToFleet', value: ship.Name })}
+                      />
+                      )
+                    })
+                }
+                      </ul>
+                    </div>
+                    <div className='col'>
+                      <ul className='list-group'>
+                        {
+                          selectedShips.length === 0 &&
+                            <li className='list-group-item'>Nothing Yet</li>
+                        }
+                            {
+                              selectedShips.map(ship => {
+                                return (
+                                  <ListItem
+                                  icon='remove'
+                                  key={ship.ShipIndex}
+                                  name={`${ship.Name} ${ship.Id > 1 ? ship.Id : '' }`}
+                                  onClick={() => dispatch({ type: 'removeFromFleet', value: ship.ShipIndex })}
+                                />
+                                )
+                              })
+                            }
+                                </ul>
+                              </div>
+                            </div>
+          </>
+      }
+      {
+        shipType === 'Fighters' &&
+          <FighterYard />
+      }
+    </div>
   )
 }

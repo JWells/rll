@@ -5,8 +5,8 @@ import DestroyerInternals from './DestroyerInternals'
 import FrigateInternals from './FrigateInternals'
 
 export default function ShipInternals () {
-  const { fleet, shipIndex } = useFleet()
-  const ship = fleet[shipIndex]
+  const { fleet, recordSheetIndex } = useFleet()
+  const ship = fleet[recordSheetIndex]
   return (
     <div>
       <div className='text-center'>

@@ -3,8 +3,8 @@ import data from './data.json'
 import './Weapons.css'
 
 function Weapons () {
-  const { fleet, shipIndex } = useFleet()
-  const ship = fleet[shipIndex]
+  const { fleet, recordSheetIndex } = useFleet()
+  const ship = fleet[recordSheetIndex]
   const {
     Bays,
     Spinal,

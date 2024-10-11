@@ -5,8 +5,8 @@ import cn from 'classnames'
 
 export default function Missiles () {
   const dispatch = useFleetDispatch()
-  const { fleet, shipIndex } = useFleet()
-  const ship = fleet[shipIndex]
+  const { fleet, recordSheetIndex } = useFleet()
+  const ship = fleet[recordSheetIndex]
   const { Missile } = ship.Armaments
   
   const missileType = data.Weapons.Missiles[Missile.Type]

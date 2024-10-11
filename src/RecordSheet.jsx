@@ -136,9 +136,9 @@ function Section ({
 }
 
 export default function RecordSheet () {
-  const { ablative, fleet, shipIndex, turn, undo } = useFleet()
+  const { ablative, fleet, recordSheetIndex, turn, undo } = useFleet()
   const dispatch = useFleetDispatch()
-  const ship = fleet[shipIndex]
+  const ship = fleet[recordSheetIndex]
   const FRONT = [
     'Front Left', 'Front', 'Front Right'
   ]
