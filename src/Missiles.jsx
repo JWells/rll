@@ -17,31 +17,36 @@ export default function Missiles () {
 
   return (
     <table className='table table-small text-center'>
-      <tr>
-        <th>Missile Type</th>
-        <th>Missile Damage</th>
-        <th>Shots</th>
-      </tr>
-      <tr>
-        <td>{Missile.Type}</td>
-        <td>{missileType.Damage}</td>
-        <td>
-          <div className='miSh'>
-            {missileShots.map((shot, index) => {
-              return (
-                <div
-                className={cn('missile_shot', {
-                  'missile_fired': (index + 1) <= Missile.Used
-                })}
-                onClick={() => dispatch({ type: 'fireMissile' })}
-                key={`missile-shot-${index}`}
-              />
-              )
-            })}
-          </div>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Missile Type</th>
+          <th>Missile Damage</th>
+          <th>Shots</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{Missile.Type}</td>
+          <td>{missileType.Damage}</td>
+          <td>
+            <div className='miSh'>
+              {
+                missileShots.map((shot, index) => {
+                  return (
+                    <div
+                    className={cn('missile_shot', {
+                      'missile_fired': (index + 1) <= Missile.Used
+                    })}
+                    onClick={() => dispatch({ type: 'fireMissile' })}
+                    key={`missile-shot-${index}`}
+                  />
+                  )
+                })
+              }
+            </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
   )
 }
-

@@ -60,11 +60,11 @@ function Fighter ({
       const damagedPreviousTurn = dmgOnTurn && dmgOnTurn !== turn
       boxes.push(
         <div
-        className={cn(`fiBox fiRow${y + 1}`, {
-          'fiDisabled': disabled,
-          'dmgNormal': dmgOnTurn,
-          'dmgInactive': damagedPreviousTurn
-        })}
+          className={cn(`fiBox fiRow${y + 1}`, {
+            'fiDisabled': disabled,
+            'dmgNormal': dmgOnTurn,
+            'dmgInactive': damagedPreviousTurn
+          })}
           key={`${y}.${x}`}
           onClick={() => dispatch({ type: 'fighterDmg', index: index,  x, y })}
         />
