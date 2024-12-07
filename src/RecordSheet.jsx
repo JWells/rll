@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useFleet, useFleetDispatch } from './LeviathanContext'
 import Weapons from './Weapons'
 import Missiles from './Missiles'
@@ -57,7 +56,6 @@ function Section ({
   lobalLocation = 'top'
 }) {
   const { ablative, turn } = useFleet()
-  const [mouseDown, setMouseDown] = useState(false)
   const dispatch = useFleetDispatch()
   const dips = [
     'Front Left',
@@ -81,11 +79,11 @@ function Section ({
     <div
       className={`section ${dips ? 'dip' : ''}`}
       onPointerMove={(e) => {
-        const elem = document.elementFromPoint(e.clientX, e.clientY)
-        if (elem && elem.getAttribute('x') && elem.getAttribute('y')) {
-          markArmor(elem.getAttribute('x'), elem.getAttribute('y'))
-        } else {
-          setMouseDown(false)
+        if (e.buttons > 0) {
+          const elem = document.elementFromPoint(e.clientX, e.clientY)
+          if (elem && elem.getAttribute('x') && elem.getAttribute('y')) {
+            markArmor(elem.getAttribute('x'), elem.getAttribute('y'))
+          }
         }
       }}
     >
@@ -113,7 +111,6 @@ function Section ({
                     x={x}
                     y={y}
                     onPointerDown={() => {
-                      setMouseDown(true)
                       markArmor(x, y)
                     }}
                     className={cn('ac_item', {
