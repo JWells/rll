@@ -43,7 +43,6 @@ function Weapons () {
             <th>(7)</th>
             <th>(6)</th>
             <th>(5)</th>
-            <th />
           </tr>
         </thead>
         <tbody>
