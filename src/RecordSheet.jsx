@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useFleet, useFleetDispatch } from './LeviathanContext'
 import Weapons from './Weapons'
 import Missiles from './Missiles'
@@ -53,7 +54,9 @@ function TrackElement ({
 function Section ({
   boxes,
   label,
-  lobalLocation = 'top'
+  labelLocatoin = 'top',
+  readonly,
+  onClick
 }) {
   const { ablative, turn } = useFleet()
   const dispatch = useFleetDispatch()
@@ -64,20 +67,23 @@ function Section ({
   ].includes(label)
 
   const markArmor = (x, y) => {
-    if (boxes[y][x].Turn === null || boxes[y][x].Turn === turn) {
-      dispatch({
-        type: 'markArmor',
-        armorLocation: label.replace(/ /, ''),
-        x,
-        y,
-        value: ablative ? 1 : 2
-      })
+    if (!readonly) {
+      if (boxes[y][x].Turn === null || boxes[y][x].Turn === turn) {
+        dispatch({
+          type: 'markArmor',
+          armorLocation: label.replace(/ /, ''),
+          x,
+          y,
+          value: ablative ? 1 : 2
+        })
+      }
     }
   }
 
   return (
     <div
-      className={`section ${dips ? 'dip' : ''}`}
+      className={`section w-100 ${dips ? 'dip' : ''}`}
+      onClick={() => readonly && onClick()}
       onPointerMove={(e) => {
         if (e.buttons > 0) {
           const elem = document.elementFromPoint(e.clientX, e.clientY)
@@ -88,7 +94,7 @@ function Section ({
       }}
     >
       {
-        lobalLocation === 'top' &&
+        readonly && labelLocatoin === 'top' &&
         <div className='label'>{label}</div>
       }
         <div className='ac_cont'>
@@ -125,7 +131,7 @@ function Section ({
           }
           </div>
           {
-            lobalLocation === 'bottom' &&
+            readonly && labelLocatoin === 'bottom' &&
               <div className='label'>{label}</div>
           }
         </div>
@@ -136,6 +142,7 @@ export default function RecordSheet () {
   const { ablative, fleet, recordSheetIndex, turn, undo } = useFleet()
   const dispatch = useFleetDispatch()
   const ship = fleet[recordSheetIndex]
+  const [modalLocation, setModalLocation] = useState('')
   const FRONT = [
     'Front Left', 'Front', 'Front Right'
   ]
@@ -147,128 +154,166 @@ export default function RecordSheet () {
   return (
     <div className='row'>
       <div className='col'>
+        <div className={cn('modal fade', {
+          'd-block': modalLocation,
+          show: modalLocation
+        })} id='armorModal' tabIndex='-1' aria-labelledby='armorModal' aria-hidden='true'>
+          <div className='modal-dialog h100'>
+            <div className='modal-content'>
+              <div className='modal-header'>
+                <h1
+                  className='modal-title fs-5'
+                  id='armorModal'
+                >
+                  {modalLocation}
+                </h1>
+                <button
+                  onClick={() => setModalLocation('')}
+                  type='button'
+                  className='btn-close'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                />
+              </div>
+              <div className='modal-body'>
+                {
+                  modalLocation &&
+                    <Section
+                      editType={undo}
+                      label={modalLocation}
+                      boxes={ship.Armor[modalLocation.replace(/ /, '')]}
+                    />
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className='section_row'>
           {
             FRONT.map(location => (
               <Section
-              editType={undo}
-              key={location}
-              label={location}
-              boxes={ship.Armor[location.replace(/ /, '')]}
-            />
+                onClick={() => setModalLocation(location)}
+                key={location}
+                label={location}
+                boxes={ship.Armor[location.replace(/ /, '')]}
+                readonly
+              />
             ))
           }
+        </div>
+        <div className='d-flex fs-6 justify-content-center'>
+          <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='ablative' autoComplete='off' readOnly checked={ablative} />
+          <label className='btn btn-sm' htmlFor='ablative'>Ablative</label>
+          <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='piercing' autoComplete='off' readOnly checked={!ablative} />
+          <label className='btn btn-sm' htmlFor='piercing'>Piercing</label>
+        </div>
+        <div className='section_row'>
+          {
+            AFT.map(location => (
+              <Section
+                onClick={() => setModalLocation(location)}
+                key={location}
+                label={location}
+                labelLocatoin='bottom'
+                boxes={ship.Armor[location.replace(/ /, '')]}
+                readonly
+              />
+            ))
+          }
+        </div>
+        <div className='d-flex justify-content-center'>
+          <table className='track'>
+            <thead>
+              <tr>
+                <th>Turn</th>
+                {
+                  count(Math.max(1, turn + 1 - 11), Math.max(12, turn + 1)).map(calulatedTurn => {
+                    if (calulatedTurn === turn + 1) {
+                      return <th key={calulatedTurn} className='track_x active_tn'>{calulatedTurn}</th>
+                    } else {
+                      return <th key={calulatedTurn} className='track_x'>{calulatedTurn}</th>
+                    }
+                  })
+                }
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Velocity</th>
+                <TrackElement ship={ship} type='Velocity' />
+              </tr>
+              <tr>
+                <th>Drift</th>
+                <TrackElement ship={ship} type='Drift' />
+              </tr>
+              <tr>
+                <th>Weapons</th>
+                <TrackElement ship={ship} type='Weapons' />
+              </tr>
+              <tr>
+                <th>Maneuver</th>
+                <TrackElement ship={ship} type='Maneuver' />
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className='d-flex justify-content-center py-3'>
+          <Missiles />
+        </div>
+        <div className='d-flex justify-content-around w-100 py-3'>
+          <div className='shieldContainer'>
+            <div className='shieldSides'>
+              <div className='shieldInput'>{ship.Shields.LeftForward}</div>
+              <div className='shieldInput'>{ship.Shields.LeftAft}</div>
             </div>
-            <div className='d-flex fs-6 justify-content-center'>
-              <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='ablative' autoComplete='off' readOnly checked={ablative} />
-              <label className='btn btn-sm' htmlFor='ablative'>Ablative</label>
-              <input type='radio' onClick={toggleAttackType} className='btn-check' name='options-base' id='piercing' autoComplete='off' readOnly checked={!ablative} />
-              <label className='btn btn-sm' htmlFor='piercing'>Piercing</label>
+            <div className='shieldCenter'>
+              <div className='shieldInput'>{ship.Shields.Forward}</div>
+              <div className='shieldLabel'>Shields</div>
+              <div className='shieldInput'>{ship.Shields.Aft}</div>
             </div>
-            <div className='section_row'>
-              {
-                AFT.map(location => (
-                  <Section
-                  key={location}
-                  label={location}
-                  lobalLocation='bottom'
-                  boxes={ship.Armor[location.replace(/ /, '')]}
-                />
-                ))
-              }
-                </div>
-                <div className='d-flex justify-content-center'>
-                  <table className='track'>
-                    <thead>
-                      <tr>
-                        <th>Turn</th>
-                        {
-                          count(Math.max(1, turn + 1 - 11), Math.max(12, turn + 1)).map(calulatedTurn => {
-                            if (calulatedTurn === turn + 1) {
-                              return <th key={calulatedTurn} className='track_x active_tn'>{calulatedTurn}</th>
-                            } else {
-                              return <th key={calulatedTurn} className='track_x'>{calulatedTurn}</th>
-                            }
-                          })
-                        }
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>Velocity</th>
-                        <TrackElement ship={ship} type='Velocity' />
-                      </tr>
-                      <tr>
-                        <th>Drift</th>
-                        <TrackElement ship={ship} type='Drift' />
-                      </tr>
-                      <tr>
-                        <th>Weapons</th>
-                        <TrackElement ship={ship} type='Weapons' />
-                      </tr>
-                      <tr>
-                        <th>Maneuver</th>
-                        <TrackElement ship={ship} type='Maneuver' />
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className='d-flex justify-content-center py-3'>
-                  <Missiles />
-                </div>
-                <div className='d-flex justify-content-around w-100 py-3'>
-                  <div className='shieldContainer'>
-                    <div className='shieldSides'>
-                      <div className='shieldInput'>{ship.Shields.LeftForward}</div>
-                      <div className='shieldInput'>{ship.Shields.LeftAft}</div>
-                    </div>
-                    <div className='shieldCenter'>
-                      <div className='shieldInput'>{ship.Shields.Forward}</div>
-                      <div className='shieldLabel'>Shields</div>
-                      <div className='shieldInput'>{ship.Shields.Aft}</div>
-                    </div>
-                    <div className='shieldSides'>
-                      <div className='shieldInput'>{ship.Shields.RightForward}</div>
-                      <div className='shieldInput'>{ship.Shields.RightAft}</div>
-                    </div>
-                  </div>
-                  <table className='thTable'>
-                    <tbody>
-                      <tr>
-                        <th className='thrustTitle' colSpan='2'>Thrust</th>
-                      </tr>
-                      <tr>
-                        <th>Normal</th>
-                        <td>{ship.Thrust}</td>
-                      </tr>
-                      <tr>
-                        <th>Damaged</th>
-                        <td>?</td>
-                      </tr>
-                      <tr>
-                        <th>Double</th>
-                        <td>?</td>
-                      </tr>
-                      <tr>
-                        <th>Damaged</th>
-                        <td>?</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div className='col'>
-                <div className='content_row'>
-                  <Weapons ship={ship} />
-                </div>
-                <div className='content_row'>
-                  <ShipInternals
-                  damage={ship.InternalDamage}
-                  type={ship.Type}
-                  turn={turn}
-                />
-                  </div>
-                </div>
-              </div>
+            <div className='shieldSides'>
+              <div className='shieldInput'>{ship.Shields.RightForward}</div>
+              <div className='shieldInput'>{ship.Shields.RightAft}</div>
+            </div>
+          </div>
+          <table className='thTable'>
+            <tbody>
+              <tr>
+                <th className='thrustTitle' colSpan='2'>Thrust</th>
+              </tr>
+              <tr>
+                <th>Normal</th>
+                <td>{ship.Thrust}</td>
+              </tr>
+              <tr>
+                <th>Damaged</th>
+                <td>?</td>
+              </tr>
+              <tr>
+                <th>Double</th>
+                <td>?</td>
+              </tr>
+              <tr>
+                <th>Damaged</th>
+                <td>?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className='col'>
+        <div className='content_row'>
+          <Weapons ship={ship} />
+        </div>
+        <div className='content_row'>
+          <ShipInternals
+            damage={ship.InternalDamage}
+            type={ship.Type}
+            turn={turn}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
