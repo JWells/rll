@@ -2,11 +2,14 @@
   display: flex;
 }
 
-.ac_cont {
+.ac_container {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   text-align: center;
   font-size: x-small;
+}
+.modal .ac_container {
+  font-size: large;
 }
 
 .section {

@@ -97,7 +97,7 @@ function Section ({
         readonly && labelLocatoin === 'top' &&
         <div className='label'>{label}</div>
       }
-        <div className='ac_cont'>
+        <div className='ac_container'>
           <div>1</div>
           <div>2</div>
           <div>3</div>
@@ -154,15 +154,15 @@ export default function RecordSheet () {
   return (
     <div className='row'>
       <div className='col'>
-        <div className={cn('modal fade', {
+        <div className={cn('modal ', {
           'd-block': modalLocation,
           show: modalLocation
-        })} id='armorModal' tabIndex='-1' aria-labelledby='armorModal' aria-hidden='true'>
+        })} style={{ touchAction: 'none' }} id='armorModal' tabIndex='-1' aria-labelledby='armorModal' aria-hidden='true'>
           <div className='modal-dialog h100'>
             <div className='modal-content'>
               <div className='modal-header'>
                 <h1
-                  className='modal-title fs-5'
+                  className='modal-title'
                   id='armorModal'
                 >
                   {modalLocation}
@@ -188,6 +188,10 @@ export default function RecordSheet () {
             </div>
           </div>
         </div>
+        {
+          modalLocation &&
+            <div className='modal-backdrop show' />
+        }
 
         <div className='section_row'>
           {
