@@ -142,7 +142,7 @@ export function missilesForFighter (fighter) {
   }
 }
 
-export function thrustForFigher (fighter) {
+export function thrustForFighter (fighter) {
   const tValues = Object.keys(fighter.Members)
     .reduce((acc, cur) => {
       const fromYard = Fighters.find(f => f.Name === cur)
@@ -157,4 +157,43 @@ export function thrustForFigher (fighter) {
     return minTValue + 2
   }
   return minTValue
+}
+
+export function damagedThrust (thrust) {
+  switch (thrust) {
+    case 4:
+      return 2
+    case 3:
+      return 1
+    case 2:
+      return 1
+    default:
+      return '?'
+  }
+}
+
+export function doubleAllocationThrust (thrust) {
+  switch (thrust) {
+    case 4:
+      return 8
+    case 3:
+      return 6
+    case 2:
+      return 4
+    default:
+      return '?'
+  }
+}
+
+export function damagedDoubleAllocationThrust (thrust) {
+  switch (thrust) {
+    case 4:
+      return 4
+    case 3:
+      return 2
+    case 2:
+      return 2
+    default:
+      return '?'
+  }
 }

@@ -5,7 +5,7 @@ import {
   craAtRow,
   lraAtRow,
   missilesForFighter,
-  thrustForFigher
+  thrustForFighter
 } from './utils'
 import cn from 'classnames'
 
@@ -90,7 +90,7 @@ function Fighter ({
       <div className='fiLRA6 fiLRABox'>{lraAtRow(fighter, 1)}</div>
       {boxes}
       <div className='fiM'>Missiles<span>{missilesForFighter(fighter)}</span></div>
-      <div className='fiT'>Movement Rate<span>{thrustForFigher(fighter)}</span></div>
+      <div className='fiT'>Movement Rate<span>{thrustForFighter(fighter)}</span></div>
     </div>
   )
 }

@@ -5,6 +5,11 @@ import Missiles from './Missiles'
 import ShipInternals from './ShipInternals'
 import cn from 'classnames'
 import './RecordSheet.css'
+import {
+  damagedThrust,
+  doubleAllocationThrust,
+  damagedDoubleAllocationThrust
+} from './utils'
 
 function count (from = 1, to) {
   const result = []
@@ -159,7 +164,7 @@ export default function RecordSheet () {
         <div className={cn('modal ', {
           'd-block': modalLocation,
           show: modalLocation
-        })} style={{ touchAction: 'none' }} id='armorModal' tabIndex='-1' aria-labelledby='armorModal' aria-hidden='true'>
+        })} style={{ touchAction: 'none' }} id='armorModal' tabIndex='-1'>
           <div className='modal-dialog h100'>
             <div className='modal-content'>
               <div className='modal-header'>
@@ -292,15 +297,15 @@ export default function RecordSheet () {
               </tr>
               <tr>
                 <th>Damaged</th>
-                <td>?</td>
+                <td>{damagedThrust(ship.Thrust)}</td>
               </tr>
               <tr>
                 <th>Double</th>
-                <td>?</td>
+                <td>{doubleAllocationThrust(ship.Thrust)}</td>
               </tr>
               <tr>
                 <th>Damaged</th>
-                <td>?</td>
+                <td>{damagedDoubleAllocationThrust(ship.Thrust)}</td>
               </tr>
             </tbody>
           </table>

@@ -12,6 +12,10 @@
   font-size: large;
 }
 
+.modal .section {
+  width: 100%;
+}
+
 .section {
   width: 26%;
   margin: 5px;
