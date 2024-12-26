@@ -8,7 +8,7 @@ export default function ShipInternals () {
   const { fleet, recordSheetIndex } = useFleet()
   const ship = fleet[recordSheetIndex]
   return (
-    <div>
+    <div className=''>
       <div className='text-center'>
         Internal Component Block
       </div>

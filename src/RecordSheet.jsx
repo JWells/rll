@@ -52,26 +52,28 @@ function TrackElement ({
 }
 
 function Section ({
-  boxes,
-  label,
+  location,
   labelLocatoin = 'top',
   readonly,
   onClick
 }) {
-  const { ablative, turn } = useFleet()
+  const { ablative, turn, fleet, recordSheetIndex } = useFleet()
+  const ship = fleet[recordSheetIndex]
   const dispatch = useFleetDispatch()
+  const boxes = ship.Armor[location.replace(/ /, '')]
+
   const dips = [
     'Front Left',
     'Front Right',
     'Aft'
-  ].includes(label)
+  ].includes(location)
 
   const markArmor = (x, y) => {
     if (!readonly) {
       if (boxes[y][x].Turn === null || boxes[y][x].Turn === turn) {
         dispatch({
           type: 'markArmor',
-          armorLocation: label.replace(/ /, ''),
+          armorLocation: location.replace(/ /, ''),
           x,
           y,
           value: ablative ? 1 : 2
@@ -82,7 +84,7 @@ function Section ({
 
   return (
     <div
-      className={`section w-100 ${dips ? 'dip' : ''}`}
+      className={`section ${dips ? 'dip' : ''}`}
       onClick={() => readonly && onClick()}
       onPointerMove={(e) => {
         if (e.buttons > 0) {
@@ -95,7 +97,7 @@ function Section ({
     >
       {
         readonly && labelLocatoin === 'top' &&
-        <div className='label'>{label}</div>
+        <div className='label'>{location}</div>
       }
         <div className='ac_container'>
           <div>1</div>
@@ -132,7 +134,7 @@ function Section ({
           </div>
           {
             readonly && labelLocatoin === 'bottom' &&
-              <div className='label'>{label}</div>
+              <div className='label'>{location}</div>
           }
         </div>
   )
@@ -180,7 +182,7 @@ export default function RecordSheet () {
                   modalLocation &&
                     <Section
                       editType={undo}
-                      label={modalLocation}
+                      location={modalLocation}
                       boxes={ship.Armor[modalLocation.replace(/ /, '')]}
                     />
                 }
@@ -199,8 +201,7 @@ export default function RecordSheet () {
               <Section
                 onClick={() => setModalLocation(location)}
                 key={location}
-                label={location}
-                boxes={ship.Armor[location.replace(/ /, '')]}
+                location={location}
                 readonly
               />
             ))
@@ -218,9 +219,8 @@ export default function RecordSheet () {
               <Section
                 onClick={() => setModalLocation(location)}
                 key={location}
-                label={location}
+                location={location}
                 labelLocatoin='bottom'
-                boxes={ship.Armor[location.replace(/ /, '')]}
                 readonly
               />
             ))

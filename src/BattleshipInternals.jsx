@@ -256,7 +256,7 @@ export default function BattleshipInternals () {
 
 
   return (
-    <svg height="209.5mm" viewBox="0 0 95.5 209.5" width="95.5mm" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" viewBox="0 0 95.5 209.5" xmlns="http://www.w3.org/2000/svg">
       <g id='dashes' stroke="#808080" strokeDasharray=".5 1.5" strokeWidth=".5">
         <path d="m85.487501 189.69583v18.94166" />
         <path d="m28.691668 142.34166v9.44168" />
