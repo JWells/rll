@@ -209,7 +209,7 @@ function underRepair (damageType, ship, turn) {
         if (dmgOnTurn) {
           const repairTurns = damage[damageType].RepairTurns
           const repairedOnTurn = dmgOnTurn + repairTurns
-          result.push(Math.max(0, repairedOnTurn - turn))
+          result.push(Math.max(0, repairedOnTurn - turn + 1))
         }
       }
     }
