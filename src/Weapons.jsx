@@ -1,7 +1,7 @@
 import { useFleet } from './LeviathanContext'
 import data from './data.json'
 import './Weapons.css'
-import { CICDamaged } from './utils'
+import { bayFireModifier } from './utils'
 
 function Weapons () {
   const { fleet, recordSheetIndex, turn } = useFleet()
@@ -61,7 +61,7 @@ function Weapons () {
                     )
                   })
                 }
-                <td>{CICDamaged(ship, turn)}</td>
+                <td>{bayFireModifier(ship, turn)}</td>
               </tr>
           }
           {
@@ -79,7 +79,7 @@ function Weapons () {
                       )
                     })
                   }
-                  <td>{CICDamaged(ship, turn)}</td>
+                  <td>{bayFireModifier(ship, turn)}</td>
                 </tr>
               )
             })

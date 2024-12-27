@@ -21,8 +21,38 @@
   "ManeuverPowerSystems": { "RepairTurns": 12, "Effect": "TODO" },
   "SLD1/2Damaged": { "RepairTurns": 12, "Effect": "TODO" },
   "SLDDestroyed": { "RepairTurns": 576, "Effect": "TODO" },
-  "CIC": { "RepairTurns": 12 },
-  "CICDestroyed": { "RepairTurns": 72, "Effect": "TODO" },
+  "CIC": {
+    "RepairTurns": 12,
+    "Battleship": [
+      [{ "x": 0, "y": 7 }, { "x": 0, "y": 8 }],
+      [{ "x": 8, "y": 13 }, { "x": 8, "y": 14 }]
+    ],
+    "Cruiser": [
+      [{ "x": 0, "y": 4 }, { "x": 9, "y": 4 }]
+    ],
+    "Destroyer": [
+      [{ "x": 9, "y": 2 }]
+    ],
+    "Frigate": [
+      [{ "x": 0, "y": 3 }, { "x": 9, "y": 3 }],
+      [{ "x": 8, "y": 5 }]
+    ]
+  },
+  "CICDestroyed": {
+    "RepairTurns": 72,
+    "Battleship": [
+      [{ "x": 5, "y": 15 }, { "x": 5, "y": 16 }, { "x": 5, "y": 17 }, { "x": 5, "y": 18 }]
+    ],
+    "Cruiser": [
+      [{ "x": 5, "y": 9 }, { "x": 5, "y": 10 }, { "x": 5, "y": 11 }]
+    ],
+    "Destroyer": [
+      [{ "x": 6, "y": 3 }]
+    ],
+    "Frigate": [
+      [{ "x": 5, "y": 6 }]
+    ]
+  },
   "BayFireControl": { "RepairTurns": 12, "Effect": "TODO" },
   "BayDestroyed": { "RepairTurns": null, "Effect": "TODO" },
   "LeftTurretFireControl": { "RepairTurns": 6, "Effect": "TODO" },
