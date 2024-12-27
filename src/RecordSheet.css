@@ -71,8 +71,13 @@
 }
 
 .track_x {
-  width: 6%;
   text-align: center;
+  color: #999999;
+  font-size: smaller;
+}
+
+.active_tn {
+  color: black;
 }
 
 .track td {

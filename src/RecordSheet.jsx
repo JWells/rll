@@ -24,7 +24,7 @@ function TrackElement ({
   type
 }) {
   const dispatch = useFleetDispatch()
-  const values = ship[type].slice(-12)
+  const values = ship[type].slice(-11)
 
   const updateTrack = () => {
     if (type === 'Weapons' || type === 'Maneuver') {
@@ -40,18 +40,18 @@ function TrackElement ({
       return (
         <td
           key={`${type}-${index}`}
-          className='track_x'
+          className='track_x active_tn'
           onClick={updateTrack}
         >
           {value}
         </td>
       )
     } else {
-      return <td key={`${type}_${index}`} className='track_x dim'>{value}</td>
+      return <td key={`${type}_${index}`} className='track_x'>{value}</td>
     }
   })
   while (track.length < 12) {
-    track.push(<td key={`${type}-${track.length}`}/>)
+    track.push(<td className='track_x' key={`${type}-${track.length}`}/>)
   }
   return track
 }
@@ -237,8 +237,8 @@ export default function RecordSheet () {
               <tr>
                 <th>Turn</th>
                 {
-                  count(Math.max(1, turn + 1 - 11), Math.max(12, turn + 1)).map(calulatedTurn => {
-                    if (calulatedTurn === turn + 1) {
+                  count(Math.max(1, turn - 10), Math.max(12, turn + 1)).map(calulatedTurn => {
+                    if (calulatedTurn === turn) {
                       return <th key={calulatedTurn} className='track_x active_tn'>{calulatedTurn}</th>
                     } else {
                       return <th key={calulatedTurn} className='track_x'>{calulatedTurn}</th>
