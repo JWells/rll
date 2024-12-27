@@ -1,5 +1,6 @@
 import data from './data.json'
 import { Ships, Fighters } from './ShipYard.json'
+import damage from './damage.json'
 
 export function constructShip (name) {
   const ship = structuredClone(Ships.find(s => s.Name === name))
@@ -195,5 +196,33 @@ export function damagedDoubleAllocationThrust (thrust) {
       return 2
     default:
       return '?'
+  }
+}
+
+export function CICDamaged (ship, turn) {
+  if (ship.Type === 'Frigate') {
+    const cics = [
+      [{ x: 0, y: 3 }, { x: 9, y: 3 }],
+      [{ x: 8, y: 5 }]
+    ]
+
+    const turnsRemainingUntilRepaired = []
+
+
+    for (const cic of cics) {
+      for (const { x, y } of cic) {
+        const dmgOnTurn = ship.Internals[y][x].Turn
+        if (dmgOnTurn) {
+          const repairTurns = damage.CIC.RepairTurns
+          const repairedOnTurn = dmgOnTurn + repairTurns
+          turnsRemainingUntilRepaired.push(Math.max(0, repairedOnTurn - turn))
+        }
+      }
+    }
+    if (Math.max(turnsRemainingUntilRepaired) > 0) {
+      return '+1'
+    } else {
+      return null
+    }
   }
 }

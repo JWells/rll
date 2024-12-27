@@ -21,7 +21,7 @@
   "ManeuverPowerSystems": { "RepairTurns": 12, "Effect": "TODO" },
   "SLD1/2Damaged": { "RepairTurns": 12, "Effect": "TODO" },
   "SLDDestroyed": { "RepairTurns": 576, "Effect": "TODO" },
-  "CIC": { "RepairTurns": 12, "Effect": "TODO" },
+  "CIC": { "RepairTurns": 12 },
   "CICDestroyed": { "RepairTurns": 72, "Effect": "TODO" },
   "BayFireControl": { "RepairTurns": 12, "Effect": "TODO" },
   "BayDestroyed": { "RepairTurns": null, "Effect": "TODO" },
