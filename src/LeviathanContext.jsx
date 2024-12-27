@@ -145,7 +145,6 @@ const reducer = (state, action) => {
         const { target } = action
         const dependent = target === 'Weapons' ? 'Maneuver' : 'Weapons'
         const turnIndex = turn - 1
-        
         let currentValue = fleet[recordSheetIndex][target][turnIndex]
         if (currentValue === 'N') {
           draft.fleet[recordSheetIndex][target][turnIndex] = 'x2'

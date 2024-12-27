@@ -149,7 +149,7 @@ export default function RecordSheet () {
   const { ablative, fleet, recordSheetIndex, turn, undo } = useFleet()
   const dispatch = useFleetDispatch()
   const ship = fleet[recordSheetIndex]
-  const [modalLocation, setModalLocation] = useState('')
+  const [acModalLocation, setAcModalLocation] = useState('')
   const FRONT = [
     'Front Left', 'Front', 'Front Right'
   ]
@@ -162,8 +162,8 @@ export default function RecordSheet () {
     <div className='row'>
       <div className='col'>
         <div className={cn('modal ', {
-          'd-block': modalLocation,
-          show: modalLocation
+          'd-block': acModalLocation,
+          show: acModalLocation
         })} style={{ touchAction: 'none' }} id='armorModal' tabIndex='-1'>
           <div className='modal-dialog h100'>
             <div className='modal-content'>
@@ -172,10 +172,10 @@ export default function RecordSheet () {
                   className='modal-title'
                   id='armorModal'
                 >
-                  {modalLocation}
+                  {acModalLocation}
                 </h1>
                 <button
-                  onClick={() => setModalLocation('')}
+                  onClick={() => setAcModalLocation('')}
                   type='button'
                   className='btn-close'
                   data-bs-dismiss='modal'
@@ -184,11 +184,11 @@ export default function RecordSheet () {
               </div>
               <div className='modal-body'>
                 {
-                  modalLocation &&
+                  acModalLocation &&
                     <Section
                       editType={undo}
-                      location={modalLocation}
-                      boxes={ship.Armor[modalLocation.replace(/ /, '')]}
+                      location={acModalLocation}
+                      boxes={ship.Armor[acModalLocation.replace(/ /, '')]}
                     />
                 }
               </div>
@@ -196,7 +196,7 @@ export default function RecordSheet () {
           </div>
         </div>
         {
-          modalLocation &&
+          acModalLocation &&
             <div className='modal-backdrop show' />
         }
 
@@ -204,7 +204,7 @@ export default function RecordSheet () {
           {
             FRONT.map(location => (
               <Section
-                onClick={() => setModalLocation(location)}
+                onClick={() => setAcModalLocation(location)}
                 key={location}
                 location={location}
                 readonly
@@ -222,7 +222,7 @@ export default function RecordSheet () {
           {
             AFT.map(location => (
               <Section
-                onClick={() => setModalLocation(location)}
+                onClick={() => setAcModalLocation(location)}
                 key={location}
                 location={location}
                 labelLocatoin='bottom'
